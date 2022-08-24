@@ -1,0 +1,7 @@
+"0","plant <- read.csv(""~/EEMB 146 Lab Files/Lab 7 Data/plant_data.csv"") #loading data"
+"0","# str(plant) 259 rows, 10 variables"
+"0","# subseting data"
+"0","plant_plot <- subset(plant, select = c(num_leaves_in_rosette, dand_rosette_diam_cm))"
+"0","# plotting scatterplot matrix"
+"0","pairs.panels(plant_plot, density = TRUE, cor = FALSE, "
+"0","             lm = TRUE, cex.axis = 0.5)"

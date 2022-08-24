@@ -1,0 +1,6 @@
+"0","# loading cuckoo egg size data"
+"0","cuckoo_egg <- read.csv(""~/EEMB 146 Lab Files/Lab 6 Data/cuckooeggs.csv"")"
+"0","cuckoo_egg$Host.Species <- as.factor(cuckoo_egg$Host.Species)"
+"0","# unique(cuckoo_egg$Host.Species), 6 levels present"
+"0","# plotting cuckoo data into boxplot"
+"0","boxplot(Egg.Length~Host.Species, data = cuckoo_egg, xlab = ""Host Species"", ylab = ""Cuckoo Egg Length (cm)"", main = ""Boxplot of Cuckoo Egg Lengths in Different Host Species"", cex.axis= .55)"

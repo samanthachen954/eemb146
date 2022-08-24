@@ -1,0 +1,4 @@
+"0","# plotting residual plot for cuckoo data\"
+"0","cuckoo1 <- aov(Egg.Length~Host.Species, data = cuckoo_egg)"
+"0","par(mfrow = c(2,2))"
+"0","plot(cuckoo1)"

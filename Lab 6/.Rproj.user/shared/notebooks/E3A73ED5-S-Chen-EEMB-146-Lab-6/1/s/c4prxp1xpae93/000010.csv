@@ -1,0 +1,3 @@
+"0","maize_res_2 = maize2$residuals # retrieving residuals"
+"0","# histogram of maize 2 residuals"
+"0","hist(maize_res_2) # normal bell curve shape but does look slightly left skewed"

@@ -1,0 +1,6 @@
+"0","# loading data"
+"0","spider <- read.csv(""~/EEMB 146 Lab Files/Lab 7 Data/spiders.csv"")"
+"0","# dropping colony variable"
+"0","spider_cleaned <- spider[c(""height.cm"", ""number.spiders"")]"
+"0","# spider scatterplot"
+"0","pairs.panels(spider_cleaned, density = TRUE, cor = FALSE, lm = TRUE, cex.axis = 0.6)"

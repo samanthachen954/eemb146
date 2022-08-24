@@ -1,0 +1,204 @@
+---
+title: "Lab Assignment 6"
+author: "Samantha Chen"
+date: "5/6/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readr)
+library(dplyr)
+library(car)
+library(ggplot2)
+library(multcomp)
+```
+# Question 1
+Is the increase of maize cultivation partly responsible for the increase in malaria?
+
+### A. Clearly state your null and alternative hypotheses
+Null Hypothesis: All populations of cultivation levels (low, medium, and high) have equal mean number of malaria cases. (H_0: alpha_low = alpha_medium = alpha_high)
+
+Alternative Hypothesis: At least one cultivation level's mean number of malaria cases is different (H_A = at least one alpha_j is not equal to 0)
+
+### B. Show me a box plot (or a means plot) of the data. How many levels are we testing?
+```{r Box Plot of Maize Data, message=FALSE, warning=FALSE}
+# loading maize data
+malaria_maize <- read.csv("~/EEMB 146 Lab Files/Lab 6 Data/malaria_vs_maize.csv")
+malaria_maize$Maize_yield <- as.factor(malaria_maize$Maize_yield)
+# unique(malaria_maize$Maize_yield), 3 levels: low, med, high
+# plotting data using boxplot
+boxplot(malaria_cases_per_10000~Maize_yield, data = malaria_maize, 
+        xlab = "Level of Cultivation of Maize", 
+        ylab = "Malaria Cases Per 10000 (case numbers)", 
+        main = "Boxplot of Malaria Cases vs. Level of Cultivation of Maize")
+  # one outlier in medium level (164 cases)
+```
+We are testing three levels in our factor (level of cultivation of maize) which are high, medium, and low.
+
+### C. Test the assumptions of normality and homogeneity of variance using the diagnostic plots (i.e. the residual plot and the qqPlot) and the Shapiro-Wilk test and the Levene’s Test. Based on these tests, what do you conclude about your normality and homogeneity of variance assumptions?
+```{r Testing Normality and Homogenity for Maize, message=FALSE, warning=FALSE}
+# running my ANOVA
+maize1 <- aov(malaria_cases_per_10000~Maize_yield, data = malaria_maize)
+par(mfrow = c(2,2)) # places 2 plots on 1 output view
+plot(maize1)
+maize_res = maize1$residuals # retrieving residuals
+```
+The residual vs. fitted plot show points that do not fall along the zero line and has a wedge shape which may indicate that my assumption of homoscedascity is not met. The normal QQplot also shows many points deviate from the straight line which is more evidence of non-normal data.
+
+```{r message=FALSE, warning=FALSE}
+# histogram for maize
+hist(maize_res)
+```
+The histogram looks asymmetrical and slightly right skewed because of outliers on the graph's right tail.
+
+```{r message=FALSE, warning=FALSE}
+# qqplot for maize
+qqPlot(maize_res)
+```
+
+In the QQplot most of the datapoints are within the confidence bands which is an indication of normal data. However there are two outliers (7 & 2) which could influence the shape of the distribution.
+
+```{r message=FALSE, warning=FALSE}
+# shapiro wilk test for maize
+shapiro.test(maize_res)
+```
+In the Shapiro-Wilk test the null hypothesis (H_0) is that the residual data is normal and the alternative hypothesis (H_A) is that the residual data is not normal. The test produced a w-value of 0.88211 and a p-value of 0.02337 which tells me that there is a 2.337% chance that I got an extreme w-value of 0.88211 through random chance. Because p-value is less than 0.05 I can reject the null hypothesis and can confidently say that this data is not normally distributed.
+
+```{r}
+# running a levene test on maize
+leveneTest(malaria_cases_per_10000~Maize_yield, malaria_maize)
+```
+In the levene test the null hypothesis (H_0) is that the variances of the three levels are equal and the alternative hypothesis (H_A) is that the variances of the three levels are not equal. The F-value of the test is 3.9662 and the p-value is 0.03991 which means that there is a 3.991% chance that we got an F-value of 3.9662 through random chance. Because the p-value is less than 0.05 I can reject the null hypothesis and can confidently say the variances between the three levels are not equal. 
+
+The dataset did not meet the assumption of normality and equal variances for all levels therefore I will need to transform the data to meet those two assumptions before running an ANOVA analysis.
+
+### D. If your assumptions aren’t met try transforming malaria_cases_per_1000. After your transformation, retest your assumptions using the transformed data with diagnostic plots (i.e. the residual plot and the qqplot) and the Shapiro-Wilk test and the Levene’s Test. Find a transformation that allows for both assumptions to be met. Just report this transformation.
+```{r Transformation of Maize Data, message=FALSE, warning=FALSE}
+# log transforming maize data
+malaria_maize$log_malaria_cases_per_10000 <- log(malaria_maize$malaria_cases_per_10000 + 1)
+# residual plots
+maize2 <- aov(log_malaria_cases_per_10000~Maize_yield, data = malaria_maize)
+par(mfrow = c(2,2)) # places 2 plots on 1 output view
+plot(maize2)
+```
+A log transformation was done on the dataset.
+
+Residual vs. Fitted plot shows that most of the residuals do not fall along the zero line but there is also no distinct pattern so it is unsure if the variances are homogenous or not. However, most of the datapoints fall on the straight line in the qqplot which is a good sign for normality.
+
+```{r}
+maize_res_2 = maize2$residuals # retrieving residuals
+# histogram of maize 2 residuals
+hist(maize_res_2) # normal bell curve shape but does look slightly left skewed
+# shapiro wilk test
+shapiro.test(maize_res_2) #p-value = 0.9494
+# qqplot for maize2 residual
+qqPlot(maize_res_2)
+# levene test for maize2
+leveneTest(log_malaria_cases_per_10000~Maize_yield, malaria_maize) 
+# p-value = 0.1002 and f-value = 2.6657
+```
+The log transformed histogram looks more symmetrical than that of the regular data.
+
+In the Shapiro-Wilk test the null hypothesis (H_0) is that the residual of log transformed data is normal and the alternative hypothesis (H_A) is that the residual of log transformed data is not normal.Because I got a p-value greater than 0.05 (p-value = 0.9494) I fail to reject the null hypothesis and can conclude that the log transformed data is normally distributed.
+
+In the levene test the null hypothesis (H_0) is that the variances of the three levels of log transformed data are equal and the alternative hypothesis (H_A) is that the variances of the three levels of log transformed data are not equal. Because I got a p-value greater than 0.05 (p-value = 0.1002) I fail to reject the null hypothesis and can conclude that variances of the three levels of the log transformed data are equal.
+
+Since the log transformed data meets all assumptions of ANOVA I can proceed with my ANOVA analysis.
+
+### E. Run an ANOVA on your transformed data. Include the ANOVA table generated in the analysis. Using the ANOVA table, conclude whether the level of cultivation significantly affects the number of malaria cases. You don’t need to do any pairwise comparisons for this exercise.
+```{r ANOVA Table for Maize, message=FALSE, warning=FALSE}
+# retrieving ANOVA table from maize2 data
+summary(maize2)
+```
+The F-value of the ANOVA test is 22.93 and the p-value (p = 2e-05) is less than alpha = 0.05. This means that I can reject the null hypothesis and conclude that at least one of the levels of maize cultivation have significantly more or less malaria cases than the others.
+
+# Question 2
+Do cuckoos lay eggs of different sizes in nests of different hosts?
+
+### A. Clearly state your null and alternative hypotheses
+Null Hypothesis: All host species have equal mean sizes of cuckoo eggs (H_0 = alpha_Hedge = alpha_Meadow = alpha_Pied = alpha_Robin = alpha_Tree = alpha_Wren).
+
+Alternative Hypothesis: At least one host species' mean egg size is different (H_A = at least one alpha_j =/= 0).
+
+### B. Show me a box plot (or a means plot) of the data. How many levels (groups) are we testing?
+```{r Box Plot of Cuckoo Egg Data, message=FALSE, warning=FALSE}
+# loading cuckoo egg size data
+cuckoo_egg <- read.csv("~/EEMB 146 Lab Files/Lab 6 Data/cuckooeggs.csv")
+cuckoo_egg$Host.Species <- as.factor(cuckoo_egg$Host.Species)
+# unique(cuckoo_egg$Host.Species), 6 levels present
+# plotting cuckoo data into boxplot
+boxplot(Egg.Length~Host.Species, data = cuckoo_egg, xlab = "Host Species", 
+        ylab = "Cuckoo Egg Length (cm)", 
+        main = "Boxplot of Cuckoo Egg Lengths in Different Host Species", cex.axis= .55)
+```
+For this dataset I will be testing six levels (species of birds).
+
+### C. Test the assumptions of normality and homogeneity of variance using diagnostic plots (i.e. residuals plots and QQplots) and a Shapiro-Wilk test and a Levene’s Test. What do you conclude about your assumptions of normality and homogeneity of variance?
+```{r Normality and Homogenity Cuckoo, message=FALSE, warning=FALSE}
+# plotting residual plot for cuckoo data\
+cuckoo1 <- aov(Egg.Length~Host.Species, data = cuckoo_egg)
+par(mfrow = c(2,2))
+plot(cuckoo1)
+```
+In the residual vs. fitted line graph most of the data do not fall on the zero line, but there is no distrinct wedge shape so it is unsure if the variances are homogenous. The qqplot has signs of normality as most of the points fall on the straight line and there is an overall linear pattern.
+
+```{r}
+# retrieving residuals
+cuckoo_res = cuckoo1$residuals
+#checking normality
+hist(cuckoo_res) # bell shape curve with no dramatic skew --> signs of normality
+qqPlot(cuckoo_res) # 2 outliers
+shapiro.test(cuckoo_res) # W = 0.9804, p-value = 0.07761
+leveneTest(Egg.Length~Host.Species, cuckoo_egg) # F-value = 0.6397, p-value = 0.6698
+```
+The histogram looks symmetrical and normally distributed. The qqPlot also looks normal with most of the datapoints falling within the confidence bands. 
+
+The Shapiro-Wilk test produced a w-value of 0.9804 and a p-value higher than alpha = 0.05 (p = 0.07761) which means that I fail to reject the null hypothesis (null: residual data is normal, alternative: residual data is not normal). Therefore I can confidently say that this dataset meets the assumption of being normally distributed.
+
+The levene test produced a F-value of 0.6397 and a p-value less than alpha = 0.05 (p = 0.6698) which means I fail to reject the null hypothesis that the variances are homogenous (null: the variances between all levels are equal, alternative: the variances are not equal). Therefore I can confidently say that this data meets the assumption of having homogeneity of variances. 
+
+### D. If your assumptions aren’t met try a transformation. Otherwise, proceed with your analysis.
+Because the dataset is normally distributed and its variances are equal for all 6 levels, and assuming the sample was collected randomly, it has met the assumptions needed to complete an ANOVA analysis and does not need to be transformed. 
+
+### E. Include the ANOVA table generated from the analysis. Conclude whether cuckoos lay different size eggs in different bird nests.
+```{r ANOVA Cuckoo, message=FALSE, warning=FALSE}
+# ANOVA table
+summary(cuckoo1) # F-value = 10.39, p-value = 3.15e-08
+```
+The F-value of the ANOVA test is 10.39 and the p-value (p = 3.15e-08) is less than alpha = 0.05. This means that I can reject the null hypothesis and conclude that at least one of the egg sizes in the a host species is have a significantly different size compared to the others. I can also conclude that cuckoos do in fact lay different size eggs in different bird nests.
+
+### F. Perform a Tukey-Kramer Test for multiple comparisons. For what bird species does the cuckoo lay the significantly smallest eggs?
+```{r Tukey Kramer Test Cuckoo, message=FALSE, warning=FALSE}
+# Tukey-Kramer test for cuckoo
+Post_hoc <- glht(cuckoo1, linfct = mcp(Host.Species = "Tukey"))
+summary(Post_hoc)
+# confint(Post_hoc)
+cld(Post_hoc)
+# plotting post hoc test results
+plot(Post_hoc, main = "Fig 1: 95% confidence level", cex.axis = 0.3)
+```
+For the Tukey-Kramer test the null hypothesis assumes that each pairwise comparison will have no difference while the alternative hypothesis is that each pairwise comparison are different.
+
+According to the summary of my post hoc test, we see that cuckoo eggs found in Meadow Pipit nests are smaller than that of Hedge Sparrow (t = -2.956, p = 0.0416), Wren's cuckoo eggs are smaller than that of Hedge Sparrow (t = -5.894, p = <0.001), Tree Pipit's cuckoo eggs are larger than that of Meadow Pipit (t = 2.918, p = 0.0464), Wren's eggs are much smaller than that of Meadow Pipit (t = -4.312, p = <0.001), Wren's eggs are much smaller than that of Pied Wagtail (t = -5.341, p = <0.001), Wren's eggs are smaller than that of Robin (t = -4.422, p = <0.001) and that of Tree Pipit (t = -5.903, p = <0.001).
+
+Looking at the letters at the bottom of my output I can see that only Meadow Pipit and Wren do not share a letter with the other bird species which means these two species have cuckoo egg lengths that are significantly different. 
+
+In Fig 1, most of the comparisons with Wren do not overlap 0 and have significant p-values. Because of that and the fact that Wren do not share a letter with any other level, I can conclude that cuckoos lay the significantly smallest eggs in Wren's nest.
+
+# Question 3
+
+### A. In 2 - 3 sentence, discuss two factors that could bias your experiment
+One factor that could bias the experiment is control of the experiment. Consuming nothing is not identical to the experimental treatment aside from the treatment itself because drinking nothing and drinking pickle juice is very different. Another factor is assignment of treatments in which participants should be randomly given nothing, water, and pickle juice in order to reduce bias.  
+
+### B. Use a power analysis to determine how many students you will need to sample (for each level) to detect a significant effect of pickle juice as a hangover cure (given that one exists). Use the script power_anova.R to answer this question
+From the power analysis plot, there needs to be approximately 25 students in each level to have a power of 0.8 and detect a significant effect of pickle juice as a hangover cure.
+
+### C. A friend of yours has collected some additional data and suggests that the standard deviation of your three treatments is closer to 90 minutes. In your R code, change the variable STD to 90 minutes and determine how many students you would need to sample.
+If the STD were to change to 90 minutes, there needs to be approximately 36 students per level to have a power of 0.8 and detect a significant effect of pickle juice as a hangover cure.
+
+### D. Finally, you stumble upon a jar of Kirkland pickle juice and some preliminary tests show you that it might drop your the approximate mean hangover recovery time to 74 minutes. With this new information, and with STD=90, change PICKLEMEAN to 74 and re-run your power analysis. How many students do you need to sample now in order for your test to have a power of 0.8?
+With pickle juice having a mean hangover recovery time to 74 minutes the amount of students needed per level to get a power of 0.8 is approximately 11-12.
+
+### E. In 1 to 2 sentences, draw some general conclusions on how the variance of your populations and the difference between your maximum and minimum mean of your levels influence the power of the ANOVA.
+Increase in variability in a population can decrease the power of your ANOVA since when I increased the STD of each treatment to 90 minutes the sample size needed to achieve a high power increased. Increase in effect size can increase the power of your ANOVA which is evident when I changed the pickle's mean recovery time from 124 mins to 74 mins which is drastically different to recovery time of not drinking anything (180 minutes) and the sample size required to achieve a high power dropped as well. 

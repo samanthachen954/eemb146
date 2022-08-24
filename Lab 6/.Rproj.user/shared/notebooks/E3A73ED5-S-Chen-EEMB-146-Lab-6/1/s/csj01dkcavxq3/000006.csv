@@ -1,0 +1,6 @@
+"0","# loading maize data"
+"0","malaria_maize <- read.csv(""~/EEMB 146 Lab Files/Lab 6 Data/malaria_vs_maize.csv"")"
+"0","malaria_maize$Maize_yield <- as.factor(malaria_maize$Maize_yield)"
+"0","# unique(malaria_maize$Maize_yield), 3 levels: low, med, high"
+"0","# plotting data using boxplot"
+"0","boxplot(malaria_cases_per_10000~Maize_yield, data = malaria_maize, xlab = ""Level of Cultivation of Maize"", ylab = ""Malaria Cases Per 10000 (case numbers)"", main = ""Boxplot of Malaria Cases vs. Level of Cultivation of Maize"")"

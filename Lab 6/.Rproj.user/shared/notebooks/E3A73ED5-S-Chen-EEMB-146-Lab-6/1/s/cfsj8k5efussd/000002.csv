@@ -1,0 +1,4 @@
+"0","# running my ANOVA"
+"0","maize1 <- aov(malaria_cases_per_10000~Maize_yield, data = malaria_maize)"
+"0","par(mfrow = c(2,2)) # places 2 plots on 1 output view"
+"0","plot(maize1)"

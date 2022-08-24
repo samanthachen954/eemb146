@@ -1,0 +1,4 @@
+"0","# retrieving residuals"
+"0","cuckoo_res = cuckoo1$residuals"
+"0","#checking normality"
+"0","hist(cuckoo_res) # bell shape curve with no dramatic skew --> signs of normality"

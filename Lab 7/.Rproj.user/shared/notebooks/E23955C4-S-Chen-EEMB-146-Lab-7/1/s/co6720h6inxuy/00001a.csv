@@ -1,0 +1,6 @@
+"0","# log transforming spider"
+"0","spider_cleaned2$log_number.spiders <- log(spider_cleaned2$number.spiders +1)"
+"0","#subset"
+"0","spider_cleaned3 <-spider_cleaned2[c(""height.cm"", ""log_number.spiders"")]"
+"0","# scatterplot and linear regression check"
+"0","pairs.panels(spider_cleaned3, density = TRUE, cor = FALSE, lm = TRUE)"

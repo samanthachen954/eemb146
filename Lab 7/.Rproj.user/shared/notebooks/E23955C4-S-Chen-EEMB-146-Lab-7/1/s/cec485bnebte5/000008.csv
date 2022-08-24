@@ -1,0 +1,6 @@
+"0","# log transformation"
+"0","plant_plot$log_num_leaves_in_rosette <- log(plant_plot$num_leaves_in_rosette +1)"
+"0","plant_plot2 <-  subset(plant_plot, select = c(log_num_leaves_in_rosette, dand_rosette_diam_cm))"
+"0","# scatterplot with transformed data"
+"0","pairs.panels(plant_plot2, density = TRUE, cor = FALSE, "
+"0","             lm = TRUE, cex.axis = 0.5)"

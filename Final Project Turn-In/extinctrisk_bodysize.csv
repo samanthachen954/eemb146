@@ -1,0 +1,296 @@
+"","ExtinctRisk","BodySize"
+"1","Least Concern",42
+"2","Endangered",65.7
+"3","Near Threatened",49.3
+"4","Near Threatened",45.3
+"5","Endangered",62.6
+"6","Critical",19.9
+"7","Endangered",41
+"8","Endangered",90.6
+"9","Endangered",26
+"10","Least Concern",49.8
+"11","Least Concern",29
+"12","Least Concern",24.6
+"13","Near Threatened",16
+"14","Vulnerable",24.5
+"15","Least Concern",50.7
+"16","Critical",42
+"17","Endangered",138.6
+"18","Least Concern",60.3
+"19","Endangered",33.2
+"20","Endangered",45.9
+"21","Endangered",36
+"22","Least Concern",26.3
+"23","Least Concern",64.9
+"24","Critical",36.9
+"25","Least Concern",47.9
+"26","Least Concern",49
+"27","Least Concern",63.3
+"28","Critical",58.8
+"29","Least Concern",31.2
+"30","Critical",51
+"31","Least Concern",69.7
+"32","Least Concern",46.4
+"33","Endangered",27.3
+"34","Vulnerable",35
+"35","Vulnerable",31
+"36","Critical",26
+"37","Critical",106.2
+"38","Critical",26
+"39","Least Concern",51.2
+"40","Least Concern",50
+"41","Least Concern",48
+"42","Least Concern",36.6
+"43","Least Concern",23.9
+"44","Endangered",66.7
+"45","Endangered",60.1
+"46","Least Concern",45
+"47","Least Concern",52.6
+"48","Endangered",29.6
+"49","Endangered",19
+"50","Vulnerable",20
+"51","Least Concern",NA
+"52","Near Threatened",30.6
+"53","Near Threatened",26.7
+"54","Critical",22.1
+"55","Least Concern",30.2
+"56","Least Concern",49.5
+"57","Vulnerable",86.3
+"58","Near Threatened",20
+"59","Near Threatened",44
+"60","Least Concern",60.1
+"61","Least Concern",43.5
+"62","Critical",21.3
+"63","Endangered",25
+"64","Least Concern",88.4
+"65","Least Concern",40.7
+"66","Least Concern",55
+"67","Least Concern",57
+"68","Vulnerable",151.1
+"69","Least Concern",28.7
+"70","Least Concern",35.9
+"71","Least Concern",25.4
+"72","Endangered",29
+"73","Endangered",22
+"74","Least Concern",31.9
+"75","Least Concern",27.7
+"76","Least Concern",27
+"77","Vulnerable",27.4
+"78","Least Concern",32.5
+"79","Endangered",35
+"80","Least Concern",35.5
+"81","Least Concern",39.3
+"82","Least Concern",28
+"83","Least Concern",23.3
+"84","Least Concern",35
+"85","Vulnerable",145
+"86","Near Threatened",30
+"87","Least Concern",36.4
+"88","Least Concern",32.4
+"89","Least Concern",30.5
+"90","Least Concern",35
+"92","Least Concern",40
+"93","Critical",17.2
+"94","Critical",45.2
+"95","Least Concern",19
+"96","Least Concern",36.8
+"97","Least Concern",41
+"98","Least Concern",25.5
+"99","Least Concern",46.1
+"100","Vulnerable",30
+"101","Near Threatened",39
+"102","Least Concern",40
+"103","Critical",26.2
+"104","Least Concern",15
+"105","Least Concern",39.9
+"106","Near Threatened",44.7
+"107","Least Concern",20
+"108","Least Concern",40.6
+"109","Endangered",38.5
+"110","Least Concern",38.3
+"111","Least Concern",25.5
+"112","Critical",32.7
+"113","Near Threatened",31.3
+"114","Endangered",21
+"115","Vulnerable",69
+"116","Least Concern",38.1
+"117","Least Concern",28.6
+"118","Least Concern",23.7
+"119","Least Concern",22
+"120","Endangered",66.7
+"121","Endangered",40
+"122","Least Concern",15
+"123","Least Concern",64.2
+"124","Least Concern",31.2
+"125","Least Concern",142.4
+"126","Least Concern",58.2
+"127","Least Concern",36
+"128","Endangered",66
+"129","Endangered",66.4
+"130","Endangered",33.3
+"131","Least Concern",32.9
+"132","Least Concern",47.2
+"133","Near Threatened",31.3
+"134","Near Threatened",22
+"135","Least Concern",25
+"136","Least Concern",20.5
+"137","Near Threatened",25.7
+"138","Least Concern",38.4
+"139","Least Concern",34.6
+"140","Least Concern",35.6
+"141","Least Concern",31
+"142","Least Concern",44.7
+"144","Least Concern",40.5
+"145","Least Concern",56.6
+"146","Endangered",52.9
+"147","Critical",65
+"148","Least Concern",27
+"149","Vulnerable",40.6
+"150","Least Concern",48
+"151","Least Concern",44
+"152","Near Threatened",41.9
+"153","Critical",42.9
+"154","Vulnerable",36.9
+"155","Least Concern",50.4
+"156","Least Concern",50
+"157","Endangered",54.7
+"158","Least Concern",27.5
+"159","Critical",16
+"160","Near Threatened",33.5
+"161","Least Concern",58.9
+"162","Critical",61.3
+"163","Least Concern",34.1
+"164","Least Concern",34.6
+"165","Least Concern",43.2
+"166","Least Concern",37.6
+"167","Near Threatened",40
+"168","Least Concern",44.2
+"169","Least Concern",11.7
+"170","Vulnerable",34.1
+"171","Endangered",20
+"172","Least Concern",32.9
+"173","Vulnerable",40.6
+"174","Least Concern",41.7
+"175","Near Threatened",32
+"176","Least Concern",22
+"177","Endangered",20
+"178","Least Concern",32.6
+"179","Least Concern",39.2
+"180","Least Concern",15.7
+"181","Vulnerable",30.5
+"182","Least Concern",39.2
+"183","Least Concern",42
+"184","Least Concern",44
+"185","Least Concern",39
+"186","Least Concern",70.4
+"187","Critical",56.9
+"188","Critical",19
+"189","Least Concern",40.4
+"190","Vulnerable",29.4
+"191","Least Concern",51
+"192","Vulnerable",35.8
+"193","Least Concern",40.2
+"194","Least Concern",34.1
+"195","Least Concern",37
+"196","Least Concern",32.3
+"197","Least Concern",68.6
+"198","Near Threatened",42.5
+"199","Least Concern",52
+"200","Least Concern",31.4
+"201","Least Concern",38
+"202","Endangered",24.5
+"203","Least Concern",27
+"204","Least Concern",42.1
+"205","Least Concern",35
+"206","Least Concern",35
+"207","Least Concern",40.5
+"208","Least Concern",40.8
+"209","Least Concern",42.2
+"210","Least Concern",61
+"211","Least Concern",51
+"212","Vulnerable",37.4
+"213","Least Concern",80
+"214","Least Concern",36
+"215","Endangered",39.7
+"216","Endangered",51
+"217","Least Concern",32.5
+"218","Least Concern",42
+"219","Least Concern",42.9
+"220","Least Concern",30
+"221","Least Concern",28.9
+"222","Least Concern",35
+"223","Least Concern",65
+"224","Vulnerable",45
+"225","Endangered",75.3
+"226","Least Concern",45
+"227","Vulnerable",32.6
+"228","Least Concern",16.2
+"229","Critical",32.5
+"230","Least Concern",40.5
+"231","Critical",45
+"232","Least Concern",37.2
+"233","Least Concern",44.9
+"234","Endangered",31.8
+"235","Near Threatened",90
+"236","Least Concern",168
+"237","Least Concern",24.4
+"238","Least Concern",36
+"239","Least Concern",40.2
+"240","Vulnerable",17.9
+"241","Least Concern",57
+"242","Vulnerable",45.6
+"243","Least Concern",49
+"244","Critical",39
+"245","Near Threatened",48
+"246","Endangered",20
+"247","Least Concern",58.9
+"248","Critical",41.9
+"250","Least Concern",26
+"251","Least Concern",27
+"252","Least Concern",45
+"253","Endangered",36.4
+"254","Near Threatened",18
+"255","Critical",31.5
+"256","Least Concern",36.7
+"257","Least Concern",36.5
+"258","Least Concern",38
+"259","Endangered",79.1
+"260","Least Concern",74
+"261","Endangered",174.3
+"262","Least Concern",25.5
+"263","Endangered",15
+"264","Least Concern",35.7
+"265","Critical",50.6
+"266","Endangered",39.7
+"267","Endangered",21.8
+"268","Least Concern",120
+"269","Least Concern",40.9
+"271","Least Concern",49.6
+"272","Endangered",66
+"273","Critical",14.8
+"274","Least Concern",35.1
+"275","Vulnerable",28.9
+"276","Least Concern",44.4
+"277","Least Concern",15.9
+"278","Least Concern",44.4
+"279","Least Concern",50.8
+"280","Least Concern",25.6
+"281","Least Concern",31
+"282","Vulnerable",32
+"283","Least Concern",33.1
+"284","Vulnerable",28.5
+"285","Critical",44.6
+"287","Least Concern",40
+"288","Least Concern",38.3
+"289","Least Concern",32.9
+"290","Endangered",11.4
+"291","Least Concern",44.9
+"292","Least Concern",14.4
+"293","Least Concern",29.4
+"294","Vulnerable",67.8
+"295","Least Concern",28.9
+"296","Least Concern",52.1
+"297","Least Concern",37
+"298","Least Concern",22.9
+"299","Least Concern",NA
+"300","Least Concern",50

@@ -1,0 +1,6 @@
+"0","#boxplot"
+"0","ggplot(sub_plant_data, aes(x = dist_from_edge_m, y = num_leaves_in_rosette)) +"
+"0","  geom_boxplot(fill = ""lightblue"") +"
+"0","  theme_classic() +"
+"0","  labs(x = ""Distance From Edge (m)"", y = ""Number of Dandelion Leaves"") +"
+"0","  ggtitle(""Boxplot of Number of Leaves in Rosette at 0.0m and 6.0m"")"

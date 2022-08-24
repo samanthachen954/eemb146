@@ -1,0 +1,6 @@
+"0","#boxplot"
+"0","ggplot(cricket_data, aes(x = feeding, y = time_to_mating)) +"
+"0","  geom_boxplot(fill = ""lightblue"") +"
+"0","  theme_classic() +"
+"0","  labs(x = ""Feeding"", y = ""Waiting Time to Mating (mins)"") +"
+"0","  ggtitle(""Boxplot of Waiting Time to Mating "")"

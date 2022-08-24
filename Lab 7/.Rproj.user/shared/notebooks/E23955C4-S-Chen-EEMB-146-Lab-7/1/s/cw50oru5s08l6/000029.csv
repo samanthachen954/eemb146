@@ -1,0 +1,3 @@
+"0","# dropping colony 5 and making a scatterplot"
+"0","spider_cleaned2 <- spider_cleaned[-c(5),] # drops row"
+"0","pairs.panels(spider_cleaned2, density = TRUE, cor = FALSE, lm = TRUE, cex.axis = 0.6)"

@@ -1,0 +1,97 @@
+---
+title: "EEMB 146 Lab 9 Assignment"
+author: "Samantha Chen"
+date: "5/31/2021"
+output: pdf_document
+---
+## Please Grade Exercise 2 (PCA) ##
+
+# Exercise 2: PCA #
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(grid)
+library(gridExtra)
+library(ggplot2)
+library(survival)
+library(survminer)
+```
+
+```{r}
+# Loading in data
+data(iris)
+head(iris)
+
+# cleaning data
+iris.num <- iris[, -5] # removing non-numerical data
+
+# running PCA
+ir.pca <- prcomp(iris.num, center = TRUE, scale = TRUE)
+
+print(ir.pca)
+
+```
+
+```{r}
+#plot PCA as line plot
+plot(ir.pca, type = "line")
+
+summary(ir.pca)
+```
+
+```{r}
+# Extract PC values for each observation
+out <- as.data.frame(ir.pca$x)
+
+#plot PC values
+ggplot(out, aes(x = PC1, y = PC2, color = iris$Species)) +
+  geom_point()
+```
+
+# Excercise 2 Questions #
+## 1. How many PCs will a dataset with 10 variables return? A dataset with 100? ##
+In a dataset the total number of principal components is determined by the original number of variables. In a dataset with 10 variables there will be 10 PCs and in a dataset with 100 variables there will be 100 PCs.
+
+## 2. For the iris PCA, which variable is the most important for each PC? ##
+The most important variable for PC1 is Petal Length (loading value = 0.5804131), for PC2 is Sepal Width (loading value = -0.92329566), for PC3 is Sepal Length (loading value = 0.7195664), and for PC4 is Petal Length (loading value = -0.8014492)
+
+## 3. How many PCs would you use to describe this dataset? Why? ##
+I would use the first two PCs to describe this dataset because according to the importance of components table, PC1 explains around 73% of the total variances and PC2 explains around 23% of the total variances. PC3 and PC4 barely explain 1% of the total variances so it won't be useful to the analysis.
+
+# Exercise 5: Survival Analysis #
+
+```{r message=FALSE, warning=FALSE}
+# loading in data
+data("lung")
+head(lung) #sex --> binary variable
+```
+
+```{r message=FALSE, warning=FALSE}
+# creating model
+srv <- survfit(Surv(time, status) ~ sex, data = lung)
+print(srv) # median look significantly different from each other
+```
+
+```{r message=FALSE, warning=FALSE}
+# survival analysis
+res.sum <- surv_summary(srv)
+head(res.sum)
+```
+
+```{r message=FALSE, warning=FALSE}
+# plotting survival curve
+ggsurvplot(srv, pval = T, conf.int = T,
+           risk.table = T,
+           risk.table.col = "strata",
+           linetype = "strata",
+           surv.median.line = "hv")
+```
+
+# Exercise 5 Questions #
+## 1. Do you think sex is a good predictor of time-to-death? Which sex (1 or 2) has the shorter median survival time? ##
+I think sex is a good predictor of time-to-death because the datapoints falls within the confidence levels (shaded areas) for both sexes. Sex 1 has the shorter median survival time, with a median time of 270 days.
+
+## 2. Why isn’t there a survival probability prediction for every single day? ##
+The KM curve is only looking at the expected duration of time until occurence of an event of interest (in this case death by lung cancer). Sometimes some data is censored (removed) in which the event may not be observed for a person within the study time period. Either way, we are interested in the time until death occurs.
+
+## 3. What does a verticle drop in the KM curve represent? ##
+The vertical drop indicates an event occurring, therefore a drop in survival probability. In the case of our KM curve it means a participant in the study has died from lung cancer. 
